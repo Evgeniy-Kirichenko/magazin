@@ -29,9 +29,7 @@ public class Cart {//корзина пользователя принцип Sing
     }
 
     public void printCart() {////правило DRY
-        for (Product product : cartProduct) {
-            System.out.println(product);
-        }
+        cartProduct.forEach(System.out::println);
     }
 
     public double cashCart() {// сумма покупки

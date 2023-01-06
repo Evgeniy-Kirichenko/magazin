@@ -1,12 +1,9 @@
 import bd.BDProduct;
 import cart.Cart;
-import product.Food;
-import product.Product;
-import product.Smartfon;
 import user.User;
 
 import java.util.Scanner;
-import static bd.BDProduct.add;
+
 import static bd.BDProduct.getProductList;
 
 
@@ -54,15 +51,8 @@ public class Main {
     public static void main(String[] args) throws CloneNotSupportedException {
         User user = new User("Иван", 10000.00);
         Cart cart = new Cart(user);
-        add(new Food("Хлеб", 25.82, 250));
-        add(new Food("Масло сливочное", 105.20, 50));
-        add(new Food("Сметана 300г", 89.45, 89));
-        add(new Food("Семечки", 41.20, 200));
-        add(new Food("Молоко", 75.20, 400));
-        add(new Food("Творог", 80.28, 100));
-        add(new Food("Кефир", 45.20, 400));
-        add(new Food("Яблоки", 85.00, 20));
-        add(new Smartfon("Sony", 124.00, 12));
+        BDProduct.init();
+
 
         boolean exit = true;
         boolean submenu = false;
@@ -76,9 +66,7 @@ public class Main {
                         exit = false;
                         break;
                     case 1://список доступных продуктов
-                        for (Product product : getProductList()) {
-                            System.out.println(product);
-                        }
+                        getProductList().forEach(System.out::println);
                         break;
                     case 2://корзина пользователя
                         System.out.print("Введите номер товара для добавления в корзину>");
@@ -92,7 +80,6 @@ public class Main {
                             cart.addCart(productNum, productQuantity);
                             cart.printCart();
                         }
-                        //  System.out.println("Введённое значение должно быть числовым");
                         break;
                     case 3://печать корзины
                         cart.printCart();
